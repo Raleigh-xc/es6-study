@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+
+            console.log('a', `\u0061`);
+
+            console.log('s', '\u20bb7');
+
+            console.log('s', '\u{20bb7}');
+
+            let s = '𠮷';
+        }
+
+        {
+            log();
+
+            let s = '𠮷';
+            console.log('length', s.length);
+
+            console.log('0', s.charAt(0));
+            console.log('1', s.charAt(1));
+
+            console.log('at0', s.charCodeAt(0));
+            console.log('at1', s.charCodeAt(1));
+        }
+
+        {
+            log();
+
+            //如果对应的是超过范围的字符
+            //取值是四个字节
+            //下一个取值是四字节的后两个字节
+
+            let s = '𠮷a';
+            console.log('length', s.length);
+            console.log('code0', s.codePointAt(0));
+            console.log('code0', s.codePointAt(0).toString(16));
+
+            console.log('code1', s.codePointAt(1));
+            console.log('code1', s.codePointAt(1).toString(16));
+
+            console.log('code2', s.codePointAt(2));
+            console.log('code2', s.codePointAt(2).toString(16));
+        }
+
+        {
+            log();
+
+            console.log('es5',String.fromCharCode('0x20bb7'));
+            console.log('es6',String.fromCodePoint('0x20bb7'));
+        }
+
+        {
+            log();
+
+            let str = '\u{20bb7}abc';
+
+            for (var i = 0; i < str.length; i++) {
+                console.log('es5', str[i]);
+            }
+
+            log();
+            for(let code of str){
+                console.log('es6', code);
+            }
+        }
+
+    </script>
+</body>
+</html>

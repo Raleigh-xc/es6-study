@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Promise</title>
+</head>
+<body>
+    <p>ES6</p>
+    <p>Hello</p>
+    <p>VueJs</p>
+    <script type="text/javascript">
+        {
+            let ajax = function(){
+                console.log('run');
+                return new Promise(function(resolve, reject){
+                    setTimeout(function(){
+                        resolve();
+                    }, 2000);
+                });
+            }
+
+            ajax().then(function(){
+                console.log('Promise', 'end1');
+            })
+        }
+
+        {
+            let ajax = function(){
+                console.log('run');
+                return new Promise(function(resolve, reject){
+                    setTimeout(function(){
+                        resolve();
+                    }, 1000);
+                });
+            }
+
+            ajax()
+            .then(function(){
+                console.log('Promise', 'end1');
+                return new Promise(function(resolve, reject){
+                    setTimeout(function(){
+                        resolve();
+                    }, 1000);
+                });
+            })
+            .then(function(){
+                console.log('Promise', 'end2');
+            });
+        }
+
+        {
+            let ajax = function(number){
+                console.log('run 4');
+                return new Promise(function(resolve, reject){
+                    if(number > 6){
+                        resolve(number);
+                    }else{
+                        //reject(number);
+                        throw new Error('it is error');
+                    }
+                });
+            };
+
+            ajax(5)
+            .then(function(result){
+                console.log('resolve', result);
+            })
+            .catch(function(error){
+                console.log('catch', error);
+            });
+        }
+
+        {
+            let ajax1 = function(){
+                return new Promise(function(resolve, reject){
+                    setTimeout(function(){
+                        resolve(1);
+                    }, 1000);
+                });
+            };
+
+            let ajax2 = function(){
+                return new Promise(function(resolve, reject){
+                    setTimeout(function(){
+                        resolve(2);
+                    }, 2000);
+                });
+            };
+
+            let ajax3 = function(){
+                return new Promise(function(resolve, reject){
+                    setTimeout(function(){
+                        reject(3);
+                    }, 3000);
+                });
+            };
+
+            Promise.all([ajax1(), ajax2(), ajax3()])
+            .then(function(result){
+                console.log('resolve123', result);
+            })
+            .catch(function(error){
+                console.log('catch123', error);
+            });
+
+            Promise.race([ajax1(), ajax2(), ajax3()])
+            .then(function(result){
+                console.log('resolveRace', result);
+            })
+            .catch(function(error){
+                console.log('catchRace', error);
+            });
+        }
+    </script>
+</body>
+</html>

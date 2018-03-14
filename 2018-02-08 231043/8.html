@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <p>es6</p>
+    <p>array</p>
+    <p>vuejs</p>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+            function test(x, y='world'){
+                console.log('default:', x, y);
+            }
+
+            test('hello');
+            test('hello','es6');
+        }
+
+        {
+            log();
+            let x = 'taaa';
+            function test(x,y=x){
+                console.log(x,y);
+            }
+            test('hahahh');
+        }
+
+        {
+            log();
+            function test(...arg){
+                for(let item of arg){
+                    console.log(item);
+                }
+            }
+
+            test(1,2,3,4,5);
+        }
+
+        {
+            log();
+            function test(){
+                console.log(arguments);
+            }
+
+            test(1,2,3,4,5);
+        }
+
+        {
+            log();
+            console.log(...[1,2,3]);
+        }
+
+        {
+            log();
+            let arrow = v => v*2;
+            let arrow2 = () => 5;
+
+            console.log('arrow',arrow(2));
+            console.log('arrow2',arrow2());
+        }
+
+    </script>
+</body>
+</html>

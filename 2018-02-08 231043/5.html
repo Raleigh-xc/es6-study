@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+
+            let str = 'string';
+
+            console.log('includes', str.includes('c'));
+
+            console.log('start', str.startsWith('st'));
+
+            console.log('end', str.endsWith('ng'));            
+        }
+
+        {
+            log();
+
+            let str = 'abc';
+
+            console.log('repeat', str.repeat(2));
+        }
+
+        {
+            let name = 'list';
+            let info = 'hello world';
+
+            let m = `${name} says ${info}, everyone.`;
+
+            console.log(m);
+        }
+
+        {
+            log();
+
+            console.log('1'.padStart(2,'0'));
+            console.log('2'.padEnd(3,'ABC'));
+            console.log('09'.padStart(10,'yyyy-mm-dd'));
+        }
+
+        {
+            log();
+            let user = {
+                name: 'ray',
+                info: 'es6'
+            };
+
+            abc`i am ${user.name}, ${user.info}`;
+
+            function abc(s,a,b){
+                console.log(s,a,b);
+            }
+        }
+
+        {
+            log();
+
+            console.log(String.raw`Hi\n${1+2}`);
+            console.log(`Hi\n${1+2}`);
+        }
+
+    </script>
+</body>
+</html>

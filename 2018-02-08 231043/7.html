@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <p>es6</p>
+    <p>array</p>
+    <p>vuejs</p>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+            let arr = Array.of(1,2,3,4,5);
+            console.log('arr', arr);
+
+            let empty = Array.of();
+            console.log('empty', empty);
+        }
+
+        {
+            log();
+
+            var p = document.getElementsByTagName('p');
+
+            console.log(p);
+
+            let arr = Array.from(p);
+
+            arr.forEach(function(item){
+                console.log(item.textContent);
+            });
+        }
+
+        {
+            log();
+
+            var p = document.querySelectorAll('p');
+
+            console.log(p);
+
+            let arr = Array.from(p);
+
+            arr.forEach(function(item){
+                console.log(item.textContent);
+            });
+        }
+
+        {
+            log();
+            var arr = [1,2,3,4,5];
+            var arr2 = Array.from(arr,n=>n+10);
+
+            console.log(arr2);
+        }
+
+        {
+            log();
+            var arr = [1,2,3].fill('p');
+            console.log(arr);
+
+            var arr2 = [1,2,3].fill('p',1,2);
+            console.log(arr2);
+        }
+
+        {
+            var arr = [1,'c',3];
+
+            for(let index of arr.keys()){
+                console.log(index);
+            }
+
+            for(let [key, value] of arr.entries()){
+                console.log(key, value);
+            }
+        }
+
+        {
+            var arr = [1,2,3,4,5,6];
+
+            console.log(arr.copyWithin(0,3,5));
+        }
+
+        {
+            var arr = [1,2,3,4,5,6];
+            var value = arr.find(n=>n>3);
+            console.log(value);
+
+            var index = arr.findIndex(n=>n>3);
+            console.log(index);
+
+            var value = arr.find(n=>n>13);
+            console.log(value);
+
+            var index = arr.findIndex(n=>n>13);
+            console.log(index);
+        }
+
+        {
+            log();
+            var arr = [1,2,3,4,5,6,NaN];
+            console.log('1',arr.includes(1));
+            console.log('NaN',arr.includes(NaN));
+        }
+
+    </script>
+</body>
+</html>

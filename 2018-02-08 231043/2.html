@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+
+        }
+    </script>
+    <script type="text/javascript">
+        {   
+            log();
+            let a, b, rest;
+
+            [a, b] = [1, 2];
+
+            console.log('a:', a);
+            console.log('b:', b);
+        }
+
+        {
+            log();
+            let a, b, rest;
+
+            [a, b, ...rest] = [1, 2, 3, 4, 5];
+
+            console.log('a:', a);
+            console.log('b:', b);
+            console.log('rest:', rest);
+        }
+
+        {
+            log();
+            let a, b, rest;
+
+            ({a,b} = {a:1,b:2});
+
+            console.log('a:', a);
+            console.log('b:', b);
+        }
+
+        {   
+            log();
+            let a, b, c, rest;
+
+            //id undefined then default
+            [a, b, c = 3] = [1, 2];
+
+            console.log('a:', a);
+            console.log('b:', b);
+            console.log('c:', c);
+        }
+
+        {
+            log();
+
+            let a = 1;
+            let b = 2;
+
+            [a, b] = [b, a];
+
+            console.log('a:', a);
+            console.log('b:', b);
+        }
+
+        {
+            log();
+            function f(){
+                return [11, 122];
+            }
+
+            let a, b;
+            [a, b] = f();
+
+            console.log('a:', a);
+            console.log('b:', b);
+        }
+
+        {
+            log();
+            function f(){
+                return [1, 2, 3, 4, 5];
+            }
+
+            let a, b;
+            [a, , , b] = f();
+
+            console.log('a:', a);
+            console.log('b:', b);
+        }
+
+        {
+            log();
+            function f(){
+                return [1, 2, 3, 4, 5];
+            }
+
+            let a, b;
+            [a, ,...b] = f();
+
+            console.log('a:', a);
+            console.log('b:', b);
+        }
+
+        {
+            log();
+            var o = {
+                p: 42,
+                q: true
+            };
+
+            let {p, q} = o;
+
+            console.log('p:', p);
+            console.log('q:', q);
+        }
+
+        {
+            log();
+            let {a = 10, b = 5} = {a: 3};
+
+            console.log('a:', a);
+            console.log('b:', b);
+        }
+
+        {
+            log();
+
+            let metaTitle = {
+                title: 'abc',
+                test: [{
+                    title: 'test',
+                    desc: 'description'
+                }]
+            };
+
+            let {title: esTitle, test: [{title: enTitle}]} = metaTitle;
+
+            console.log('esTitle:', esTitle);
+            console.log('enTitle:', enTitle);
+        }
+
+
+    </script>
+</body>
+</html>

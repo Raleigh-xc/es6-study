@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <p>es6</p>
+    <p>array</p>
+    <p>vuejs</p>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+
+            class Parent{
+                constructor(name = 'es6'){
+                    this.name = name;
+                }
+            }
+
+            let p = new Parent('abc');
+
+            console.log(p);
+
+            class Child extends Parent{
+                constructor(name = 'vuejs'){
+                    super(name);
+                    this.type = 'child';
+                }
+            }
+
+            let c = new Child('cab');
+
+            console.log(c);
+        }
+
+        {
+            log();
+
+            class Parent{
+                constructor(name = 'es6'){
+                    this.name = name;
+                }
+
+                get longName(){
+                    return 'getter ' + this.name;
+                }
+
+                set longName(value){
+                    this.name = value;
+                }
+            }
+
+            let v = new Parent('abc');
+
+            console.log(v);
+            console.log(v.longName);
+
+            v.longName = 'wasd';
+
+            console.log(v);
+            console.log(v.longName);
+
+        }
+
+        {
+            log();
+
+            class Parent{
+                constructor(name = 'es6'){
+                    this.name = name;
+                }
+
+                get longName(){
+                    return 'getter ' + this.name;
+                }
+
+                set longName(value){
+                    this.name = value;
+                }
+
+                static tell(){
+                    console.log('static tell');
+                }
+            }
+
+            let v = new Parent('abc');
+
+            Parent.tell();
+        }
+
+        {
+            log();
+
+            class Parent{
+                constructor(name = 'es6'){
+                    this.name = name;
+                }
+
+                get longName(){
+                    return 'getter ' + this.name;
+                }
+
+                set longName(value){
+                    this.name = value;
+                }
+
+                static tell(){
+                    console.log('static tell');
+                }
+            }
+
+            Parent.x = 'xxxxx';
+
+            console.log(Parent.x);
+        }
+
+    </script>
+</body>
+</html>

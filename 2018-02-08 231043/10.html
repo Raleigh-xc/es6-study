@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <p>es6</p>
+    <p>array</p>
+    <p>vuejs</p>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+            let a1 = Symbol();
+            let a2 = Symbol();
+            console.log(a1 === a2);
+
+            let a3 = Symbol.for('a3');
+            let a4 = Symbol.for('a3');
+            console.log(a3 === a4);
+        }
+
+        {
+            log();
+            let a1 = Symbol.for('abc');
+            let a2 = Symbol('abc');
+            let obj = {
+                [a1]: 'abc',
+                [a2]: 'cba',
+                'abc': 123,
+                'c': 456
+            };
+
+            console.log(obj);
+
+            console.log(Reflect.ownKeys(obj));
+        }
+
+    </script>
+</body>
+</html>

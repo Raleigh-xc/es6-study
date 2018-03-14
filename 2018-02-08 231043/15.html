@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <p>es6</p>
+    <p>array</p>
+    <p>vuejs</p>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+
+            let ajax = function(callback){
+                console.log('run1');
+                setTimeout(function(){
+                    callback&&callback.call();
+                },1000);
+            };
+
+            ajax(function(){
+                console.log('t1');
+            });
+            
+        }
+
+        {
+            log();
+
+            let ajax = function(){
+                console.log('run2');
+                return new Promise(function(resolve,reject){
+                    setTimeout(function(){
+                        resolve('abc');
+                    },1000);
+                });
+            };
+
+            ajax().then(function(data){
+                console.log(data,'t2');
+            })
+        }
+
+        {
+            log();
+
+            let ajax = function(){
+                console.log('run3');
+                return new Promise(function(resolve,reject){
+                    setTimeout(function(){
+                        console.log('p1');
+                        resolve('abc');
+                    },1000);
+                });
+            };
+
+            ajax().then(function(data){
+                console.log('p2',data);
+                return new Promise(function(resolve,reject){
+                    setTimeout(function(){
+                        resolve('cba');
+                    },1000);
+                });
+            }).then(function(data){
+                console.log('p3',data);
+            })
+        }
+
+        {
+            let defer = function(num){
+                console.log('defer1')
+                return new Promise(function(y,n){
+                    if(num>5){
+                        y('num > 5');
+                    }else{
+                        // throw new Error('it is error');
+                        n('it is error');
+                    }
+                });
+            }
+
+            defer(4).then(function(data){
+                console.log('then', data);
+            }).catch(function(err){
+                console.log('catch', err);
+            });
+        }
+
+        {
+            log();
+
+            function loadImg(src){
+                return new Promise(function(resolve,reject){
+                    let img = document.createElement('img');
+                    img.src = src;
+                    img.onload = function(){
+                        resolve(img);
+                    };
+                    img.onerror = function(error){
+                        reject(error);
+                    };
+                });
+            }
+
+            function showImg(images){
+                images.forEach(img=>document.body.appendChild(img));
+            }
+
+            Promise.all([
+                loadImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1520618610325&di=65f7cf2df8d3d2fa69e176d0b2bec804&imgtype=0&src=http%3A%2F%2Fimage.evget.com%2Fimages%2Farticle%2F2016%2FJavascriptky-3.png'),
+                loadImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1520618624562&di=9ac9f598ff62f2c1b98d8f6f4bd0c96e&imgtype=0&src=http%3A%2F%2Fstatic.open-open.com%2Flib%2FuploadImg%2F20151116%2F20151116143512_625.jpg'),
+                loadImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1520618637788&di=d92ac5568f6dedf11d1408a1154bd749&imgtype=0&src=http%3A%2F%2Fimg.mukewang.com%2F57a0676800013b2506000338-590-330.jpg')
+            ]).then(showImg);
+        }
+
+        {
+            log();
+            var arr = ['a','b','c'];
+            var str = 'abc';
+
+            [...str].forEach(item=>console.log('str abc',item));
+        }
+
+    </script>
+</body>
+</html>

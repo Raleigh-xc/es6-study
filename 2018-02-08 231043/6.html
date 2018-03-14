@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+            console.log('15', Number.isFinite(15));
+            console.log('NaN', Number.isFinite(NaN));
+            console.log('1/0', Number.isFinite(1/0));    
+        }
+
+        {
+            log();
+            console.log('NaN', Number.isNaN(NaN));
+            console.log('0', Number.isNaN(0)); 
+        }
+
+        {
+            log();
+            console.log('25', Number.isInteger(25));
+            console.log('25.0', Number.isInteger(25.0));
+        }
+
+        {
+            log();
+            console.log(Number.MAX_SAFE_INTEGER);
+            console.log(Number.MIN_SAFE_INTEGER);
+
+            //Number.isSafeInteger
+            console.log('10',Number.isSafeInteger(10));
+            console.log('NaN',Number.isSafeInteger(NaN));
+        }
+
+        {
+            log();
+
+            console.log(4.1, Math.trunc(4.1));
+            console.log(4.9, Math.trunc(4.9));
+            console.log(-4.1, Math.trunc(-4.1));
+            console.log(-4.9, Math.trunc(-4.9));
+        }
+
+        {
+            log();
+
+            console.log(2, Math.sign(2));
+            console.log(-2, Math.sign(-2));
+            console.log('a', Math.sign('a'));
+            console.log(0, Math.sign(0));
+            console.log(-0, Math.sign(-0));
+        }
+
+        {
+            log();
+
+            console.log('-8',Math.cbrt(-8));
+            console.log('-1',Math.cbrt(-1));
+        }
+
+        {
+            log();
+
+            console.log('3 4',Math.hypot(3,4));
+        }
+
+    </script>
+</body>
+</html>

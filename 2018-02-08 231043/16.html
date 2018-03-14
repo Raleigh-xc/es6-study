@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <p>es6</p>
+    <p>array</p>
+    <p>vuejs</p>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+
+            let arr = ['hello','world'];
+
+            let map = arr[Symbol.iterator]();
+
+            console.log(map.next());
+            console.log(map.next()); 
+            console.log(map.next());             
+        }
+
+        {   
+            log();
+            let obj = {
+                'a': 'AA',
+                'b': 'BB',
+                'c': 'CC'
+            };
+
+            obj[Symbol.iterator] = function* (){
+                // console.log(this);
+                for(let [k] of Object.keys(this)){
+                    yield [k,this[k]];
+                }
+            }
+
+            // let c = obj[Symbol.iterator]();
+
+            // console.log(c.next());
+            // console.log(c.next());
+            // console.log(c.next());
+            // console.log(c.next());
+
+            for(let k of obj){
+                console.log(k);
+            }
+        }
+
+        {
+            log();
+            let obj = {
+                'a': 'AA',
+                'b': 'BB',
+                'c': 'CC'
+            };
+        }
+
+    </script>
+</body>
+</html>

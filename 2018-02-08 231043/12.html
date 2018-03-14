@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <p>es6</p>
+    <p>array</p>
+    <p>vuejs</p>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+
+            let map = new Map();
+            let arr = [];
+
+            map.set('t',1);
+            arr.push({t:1});
+
+            console.log('map.set',map);
+            console.log('arr.push',arr);
+
+            let map_exists = map.has('t');
+            let arr_exists = arr.find(function(item){
+                //这里的校验不完全正确
+                return item.t;
+            });
+
+            console.log('map_exists',map_exists);
+            console.log('arr_exists',arr_exists);
+
+            map.set('t',2);
+            arr.forEach(function(item){
+                return item.t ? item.t = 2: '';
+            })
+
+            console.log('map update',map);
+            console.log('arr update',arr);
+
+        }
+
+        {
+            let s = new Set();
+
+            s.add(1).add(2).add(3);
+
+            console.log(s);
+        }
+
+    </script>
+</body>
+</html>

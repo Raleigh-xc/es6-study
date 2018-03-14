@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Decorator</title>
+</head>
+<body>
+    <p>ES6</p>
+    <p>Hello</p>
+    <p>VueJs</p>
+    <script type="text/javascript">
+        let readonly = function(target, name, descriptor){
+            descriptor.writable = false;
+            return descriptor;
+        }
+
+        class Test{
+            @readonly
+            time(){
+                return '2018-02-07';
+            }
+        }
+
+        let test = new Test();
+
+        test.time = function(){
+            console.log('reset time');
+        }
+
+        console.log(test.time());
+    </script>
+</body>
+</html>

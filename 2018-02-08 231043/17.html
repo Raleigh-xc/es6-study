@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <p>es6</p>
+    <p>array</p>
+    <p>vuejs</p>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+
+            let tell = function* (){
+                yield 'a';
+                yield 'b';
+                return 'c';
+            }          
+
+            let g = tell();
+
+            console.log(g.next());
+            console.log(g.next());
+            console.log(g.next());
+            console.log(g.next());
+        }
+
+        {
+            log();
+            let obj = {
+                'a': 'AA',
+                'b': 'BB',
+                'c': 'CC',
+                * [Symbol.iterator](){
+                    yield 1;
+                    yield 2;
+                    yield 3;
+                    return 4;
+                }
+            };
+
+            for(let item of obj){
+                console.log('item', item);
+            }
+        }
+
+        {
+            log();
+            let state = function* (){
+                while(true){
+                    yield 'a';
+                    yield 'b';
+                    yield 'c';
+                }
+            }
+
+            let status = state();
+            console.log('status',status.next());
+            console.log('status',status.next());
+            console.log('status',status.next());
+            console.log('status',status.next());
+            console.log('status',status.next());
+        }
+
+        {
+            // log();
+            // let state = async function (){
+            //     while(true){
+            //         await 'a';
+            //         await 'b';
+            //         await 'c';
+            //     }
+            // }
+
+            // let status = state();
+            // console.log('status',status.next());
+            // console.log('status',status.next());
+            // console.log('status',status.next());
+            // console.log('status',status.next());
+            // console.log('status',status.next());
+        }
+
+        {
+            log();
+            function draw(count){
+                console.log(`shengyu ${count} ci~~~`);
+            }
+
+            function* doSomething (count){
+                while(count>0){
+                    count--;
+                    yield draw(count);
+                }
+            }
+
+            let doS = doSomething(5);
+
+            var btn = document.createElement('button');
+            btn.id = 'start';
+            btn.textContent = 'do once';
+
+            document.body.appendChild(btn);
+
+            document.getElementById('start').addEventListener('click',function(){
+                doS.next();
+            },false);
+        }
+
+        {
+            log();
+
+            let ajax = function* (){
+                yield new Promise(function(resolve,reject){
+                    setTimeout(function(){
+                        resolve({code: 0});
+                    },200);
+                });
+            }
+
+            let pull = function(){
+                let gen = ajax();
+                let step = gen.next();
+
+                step.value.then(function(data){
+                    if(data.code != 0){
+                        setTimeout(function(){
+                            console.log('wait');
+                            pull();
+                        },1000);
+                    }else{
+                        console.log(data);
+                    }
+                });
+            }
+
+            pull();
+        }
+
+    </script>
+</body>
+</html>

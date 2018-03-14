@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Class</title>
+</head>
+<body>
+    <p>ES6</p>
+    <p>Hello</p>
+    <p>VueJs</p>
+    <script type="text/javascript">
+        {
+            class Parent{
+                constructor(name='Ray'){
+                    this.name = name;
+                }
+            }
+
+            let parent = new Parent('v');
+            console.log('构造函数和实例',parent);
+        }
+
+        {
+            class Parent{
+                constructor(name='Ray'){
+                    this.name = name;
+                }
+            }
+
+            class Child extends Parent{
+
+            }
+
+            console.log('继承', new Child());
+        }
+
+        {
+            class Parent{
+                constructor(name='Ray'){
+                    this.name = name;
+                }
+            }
+
+            class Child extends Parent{
+                constructor(name='child'){
+                    super(name);
+                    this.type = 'child-type';
+                }
+            }
+
+            console.log('继承传递参数', new Child());
+        }
+
+        {
+            class Parent{
+                constructor(name='Ray'){
+                    this.name = name;
+                }
+
+                get longName(){
+                    return 'es6' + this.name;
+                }
+
+                set longName(value){
+                    this.name = value;
+                }
+            }
+
+            let v = new Parent();
+            console.log('getter', v.longName);
+            v.longName = 'HelloWorld';
+            console.log('getter', v.longName);
+        }
+
+        {
+            //静态方法
+            class Parent{
+                constructor(name='Ray'){
+                    this.name = name;
+                }
+
+                static tell(){
+                    console.log('static', 'tell');
+                }
+            }
+
+            Parent.tell();
+        }
+
+        {
+            //静态属性
+            class Parent{
+                constructor(name='Ray'){
+                    this.name = name;
+                }
+
+                static tell(){
+                    console.log('static', 'tell');
+                }
+            }
+
+            Parent.type = 'test';
+
+            console.log('静态属性', Parent.type);
+        }
+    </script>
+</body>
+</html>

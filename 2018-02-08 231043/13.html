@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+    <p>es6</p>
+    <p>array</p>
+    <p>vuejs</p>
+    <script type="text/javascript">
+        var logIndex = 0;
+        function log(){
+            console.log(`${logIndex++}.===============================`);
+        }
+    </script>
+    <script type="text/javascript">
+        
+        {
+            log();
+
+            let obj = {
+                time: '2018-03-05',
+                name: 'es6',
+                _r: 123
+            };
+
+            let monitor = new Proxy(obj,{
+                get(target,key){
+                    if(key === 'time'){
+                        console.log('get time');
+                        return target[key];
+                    }else{
+                        return target[key]
+                    }
+                },
+                set(target,key,value){
+                    if(key === 'name'){
+                        console.log('name update');
+                        return target[key] = value;
+                    }else{
+                        return target[key];
+                    }
+                }
+            });
+
+            console.log('get',monitor.time);
+            monitor.name = 'abc';
+            console.log('set',monitor.name);
+        }
+
+        {
+            log();
+
+            let obj = {
+                time: '2018-03-05',
+                name: 'es6',
+                _r: 123,
+                _a: 'a'
+            };
+
+            let monitor = new Proxy(obj,{
+                has(target,key){
+                    if(key === 'name'){
+                        return target[key];
+                        //这个判断不完全正确 0 false null undefined
+                    }else{
+                        return false;
+                    }
+                },
+                deleteProperty(target,key){
+                    if(key.startsWith('_')){
+                        delete target[key];
+                        return true;
+                    }else{
+                        return false;
+                    }
+                },
+                ownKeys(target,key){
+                    return Object.keys(target).filter(item=>!item.startsWith('_'));
+                }
+            });
+
+            console.log('has time', 'time' in monitor);
+            console.log('has name', 'name' in monitor);
+
+            console.log('delete time', delete monitor.name);
+            console.log('delete _r', delete monitor._r);
+
+            console.log('_r', monitor._r);
+
+            console.log('ownKeys', Object.keys(monitor));
+        }
+
+        {
+            log();
+            let obj = {
+                time: '2018-03-05',
+                name: 'es6',
+                _r: 123,
+                _a: 'a'
+            };
+
+            console.log('get',Reflect.get(obj,'time'));
+
+            Reflect.set(obj,'time', '2018-03-06');
+
+            console.log('get',Reflect.get(obj,'time'));
+
+            Reflect.set(obj, '_b', 'b');
+
+            console.log(obj);
+        }
+
+        {
+            function proxyFn(target, validator){
+                return new Proxy(target,{
+                    _validator: validator,
+                    set(target,key,value){
+                        if(target.hasOwnProperty(key)){
+                            let _va = this._validator[key];
+                            if(!!_va(value)){
+                                return Reflect.set(target,key,value);
+                            }else{
+                                console.log('error value');
+                            }
+                        }else{
+                            console.log('error key');
+                        }
+                    }
+                });
+            }
+
+            var validator = {
+                name(value){
+                    return typeof value === 'string';
+                },
+                age(value){
+                    return typeof value === 'number' && value > 18;
+                }
+            }
+
+            class Person{
+                constructor(name,age){
+                    this.name = name;
+                    this.age = age;
+
+                    return proxyFn(this,validator);
+                }
+            }
+
+            let p = new Person('R',28);
+
+            console.log(p);
+
+            p.name = 123;
+        }
+
+    </script>
+</body>
+</html>

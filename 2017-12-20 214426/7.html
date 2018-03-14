@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Symbol</title>
+</head>
+<body>
+    <p>ES6</p>
+    <p>Hello</p>
+    <p>VueJs</p>
+    <script type="text/javascript">
+        {
+            let a1 = Symbol();
+            let a2 = Symbol();
+
+            console.log('a1 === a2', a1 === a2);
+            console.log('a1 == a2', a1 == a2);
+
+            let a3 = Symbol.for('a3');
+            console.log(a3);
+            let a4 = Symbol.for('a3');
+
+            console.log(a3 === a4);
+        }
+
+        {
+            let a1 = Symbol('abc');
+            let obj = {
+                [a1]: 'abc',
+                'abc': 123,
+                'c': 456
+            };
+
+            console.log(obj);
+
+            for(let [k, v] of Object.entries(obj)){
+                console.log('let of:', k, v);
+            }
+
+            Object.getOwnPropertySymbols(obj).forEach(function(key){
+                console.log('getOwnPropertySymbols:', obj[key]);
+            });
+
+            Reflect.ownKeys(obj).forEach(function(key){
+                console.log('Reflect.ownKeys:', obj[key]);
+            });
+        }
+    </script>
+</body>
+</html>

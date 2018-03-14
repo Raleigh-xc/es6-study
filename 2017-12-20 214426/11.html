@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Proxy</title>
+</head>
+<body>
+    <p>ES6</p>
+    <p>Hello</p>
+    <p>VueJs</p>
+    <script type="text/javascript">
+        {
+            let obj = {
+                time: '2017-12-24',
+                name: 'Ray',
+                _r: 123
+            }
+
+            let monitor = new Proxy(obj,{
+                //拦截对象属性的读取
+                get(target, key){
+                    return target[key].replace('2017','2018');
+                },
+                //拦截对象设置属性
+                set(target, key, value){
+                    if(key === 'name'){
+                        return target[key] = value;
+                    }else{
+                        return target[key];
+                    }
+                },
+                //拦截key in object
+                has(target, key){
+                    if(key === 'name'){
+                        return target[key];
+                    }else{
+                        return false;
+                    }
+                },
+                //拦截delete
+                deleteProperty(target, key){
+                    if(key.indexOf('_') > -1){
+                        delete target[key];
+                        return true;
+                    }else{
+                        return target[key];
+                    }
+                },
+                //拦截Object.keys,Object.getOwnPropertySymbols,Object.getOwnPropertyNames
+                ownKeys(target){
+                    return Object.keys(target).filter(item=>item!='time');
+                }
+
+            });
+
+            // monitor
+            console.log('get',monitor.time);
+
+            monitor.time = 'Sean';
+            console.log('set-time', monitor.time);
+
+            monitor.name = 'Sean';
+            console.log('set-name', monitor.name, monitor);
+
+            console.log('has', 'name' in monitor, 'title' in monitor);
+
+            delete monitor._r;
+            console.log('delete', monitor);
+
+            console.log('ownKeys', Object.keys(monitor));
+        }
+
+        {
+            let obj = {
+                time: '2017-12-24',
+                name: 'Ray',
+                _r: 123
+            };
+
+            console.log('Reflect get', Reflect.get(obj,'time'));
+        }
+
+        {
+            function validator(target, validator){
+                 
+            }
+        }
+    </script>
+</body>
+</html>

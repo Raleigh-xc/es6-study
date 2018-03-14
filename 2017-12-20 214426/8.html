@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Set</title>
+</head>
+<body>
+    <p>ES6</p>
+    <p>Hello</p>
+    <p>VueJs</p>
+    <script type="text/javascript">
+        {
+            let list = new Set([1,2,3]);
+            list.add(5);
+            list.add(1);
+
+            console.log('size', list.size);
+        }
+
+        {
+            let arr = [1,2,3,4,5,3,4,5];
+
+            let list = new Set(arr);
+            console.log(Array.from(list));
+            console.log([...list]);
+        }
+
+        {
+            let arr = ['add','delete','clear','has'];
+
+            let list = new Set(arr);
+
+            list.add('abc');
+            console.log('add:',list);
+
+            list.delete('add');
+            console.log('delete:',list);
+
+            list.has('abc');
+            console.log('has:',list);
+
+            list.clear();
+            console.log('clear:',list);
+        }
+
+        {
+            let arr = ['add','delete','clear','has'];
+
+            let list = new Set(arr);
+
+            for(let key of list.keys()){
+                console.log('key:', key);
+            }
+
+            for(let value of list.values()){
+                console.log('value:', value);
+            }
+
+            for(let item of list.entries()){
+                console.log('item:', item);
+            }
+
+            for(let item of list){
+                console.log('item:', item);
+            }
+
+            list.forEach(function(item){
+                console.log('forEach:', item);
+            });
+        }
+
+    </script>
+</body>
+</html>
